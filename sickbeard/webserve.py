@@ -4241,7 +4241,8 @@ class ConfigSearch(Config):
                    torrent_label=None, torrent_label_anime=None, torrent_path=None, torrent_verify_cert=None,
                    torrent_seed_time=None, torrent_paused=None, torrent_high_bandwidth=None,
                    torrent_rpcurl=None, torrent_auth_type=None, ignore_words=None, trackers_list=None, require_words=None, ignored_subs_list=None,
-                   syno_dsm_host=None, syno_dsm_user=None, syno_dsm_pass=None, syno_dsm_path=None):
+                   syno_dsm_host=None, syno_dsm_user=None, syno_dsm_pass=None, syno_dsm_path=None,
+                   wake=None, wait=None, wake_mac=None, wait_ip=None, wait_port=None, wait_timeout=None):
 
         results = []
 
@@ -4263,6 +4264,13 @@ class ConfigSearch(Config):
         sickbeard.TORRENT_METHOD = torrent_method
         sickbeard.USENET_RETENTION = try_int(usenet_retention, 500)
 
+        sickbeard.WAKE_ENABLED = config.checkbox_to_value(wake)
+        sickbeard.WAIT_ENABLED = config.checkbox_to_value(wait)
+        sickbeard.WAKE_MAC_ADDRESS = wake_mac
+        sickbeard.WAIT_IP_ADDRESS = wait_ip
+        sickbeard.WAIT_PORT = try_int(wait_port, 8080)
+        sickbeard.WAIT_TIMEOUT = try_int(wait_timeout, 20)
+
         sickbeard.IGNORE_WORDS = ignore_words if ignore_words else ""
         sickbeard.TRACKERS_LIST = trackers_list if trackers_list else ""
         sickbeard.REQUIRE_WORDS = require_words if require_words else ""
@@ -4278,7 +4286,7 @@ class ConfigSearch(Config):
 
         sickbeard.USE_FAILED_DOWNLOADS = config.checkbox_to_value(use_failed_downloads)
         sickbeard.DELETE_FAILED = config.checkbox_to_value(delete_failed)
-
+        
         sickbeard.SAB_USERNAME = sab_username
         sickbeard.SAB_PASSWORD = filters.unhide(sickbeard.SAB_PASSWORD, sab_password)
         sickbeard.SAB_APIKEY = filters.unhide(sickbeard.SAB_APIKEY, sab_apikey.strip())

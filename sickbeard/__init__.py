@@ -321,6 +321,13 @@ NEWZBIN = False
 NEWZBIN_USERNAME = None
 NEWZBIN_PASSWORD = None
 
+WAKE_ENABLED = False
+WAIT_ENABLED = False
+WAKE_MAC_ADDRESS = None
+WAIT_IP_ADDRESS = None
+WAIT_PORT = None
+WAIT_TIMEOUT = None
+
 SAB_USERNAME = None
 SAB_PASSWORD = None
 SAB_APIKEY = None
@@ -719,7 +726,8 @@ def initialize(consoleLogging=True):  # pylint: disable=too-many-locals, too-man
             DOWNLOAD_URL, BACKLOG_DAYS, GIT_AUTH_TYPE, GIT_USERNAME, GIT_PASSWORD, GIT_TOKEN, DEVELOPER, DISPLAY_ALL_SEASONS, SSL_VERIFY, NEWS_LAST_READ, \
             NEWS_LATEST, SOCKET_TIMEOUT, SYNOLOGY_DSM_HOST, SYNOLOGY_DSM_USERNAME, SYNOLOGY_DSM_PASSWORD, SYNOLOGY_DSM_PATH, GUI_LANG, SICKRAGE_BACKGROUND, \
             SICKRAGE_BACKGROUND_PATH, FANART_BACKGROUND, FANART_BACKGROUND_OPACITY, CUSTOM_CSS, CUSTOM_CSS_PATH, USE_SLACK, SLACK_NOTIFY_SNATCH, \
-            SLACK_NOTIFY_DOWNLOAD, SLACK_WEBHOOK, USE_DISCORD, DISCORD_NOTIFY_SNATCH, DISCORD_NOTIFY_DOWNLOAD, DISCORD_WEBHOOK
+            SLACK_NOTIFY_DOWNLOAD, SLACK_WEBHOOK, USE_DISCORD, DISCORD_NOTIFY_SNATCH, DISCORD_NOTIFY_DOWNLOAD, DISCORD_WEBHOOK, \
+            WAKE_ENABLED, WAIT_ENABLED, WAKE_MAC_ADDRESS, WAIT_IP_ADDRESS, WAIT_PORT, WAIT_TIMEOUT
 
         if __INITIALIZED__:
             return False
@@ -1060,6 +1068,13 @@ def initialize(consoleLogging=True):  # pylint: disable=too-many-locals, too-man
         NZBS = check_setting_bool(CFG, 'NZBs', 'nzbs')
         NZBS_UID = check_setting_str(CFG, 'NZBs', 'nzbs_uid', censor_log=True)
         NZBS_HASH = check_setting_str(CFG, 'NZBs', 'nzbs_hash', censor_log=True)
+
+        WAKE_ENABLED = check_setting_bool(CFG, 'NZBs', 'wake')
+        WAIT_ENABLED = check_setting_bool(CFG, 'NZBs', 'wait')
+        WAKE_MAC_ADDRESS = check_setting_str(CFG, 'NZBs', 'wake_mac')
+        WAIT_IP_ADDRESS = check_setting_str(CFG, 'NZBs', 'wait_ip')
+        WAIT_PORT       = check_setting_int(CFG, 'NZBs', 'wait_port', 8080)
+        WAIT_TIMEOUT    = check_setting_int(CFG, 'NZBs', 'wait_timeout', 10)
 
         NEWZBIN = check_setting_bool(CFG, 'Newzbin', 'newzbin')
         NEWZBIN_USERNAME = check_setting_str(CFG, 'Newzbin', 'newzbin_username', censor_log=True)
@@ -1929,6 +1944,12 @@ def save_config():  # pylint: disable=too-many-statements, too-many-branches
             'nzbs': int(NZBS),
             'nzbs_uid': NZBS_UID,
             'nzbs_hash': NZBS_HASH,
+            'wake': WAKE_ENABLED,
+            'wait': WAIT_ENABLED,
+            'wake_mac': WAKE_MAC_ADDRESS,
+            'wait_ip': WAIT_IP_ADDRESS,
+            'wait_port': int(WAIT_PORT),
+            'wait_timeout': int(WAIT_TIMEOUT) 
         },
 
         'Newzbin': {

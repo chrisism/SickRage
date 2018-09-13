@@ -312,7 +312,83 @@
                                 </div>
                             </div>
 
+
                             <div id="content_use_nzbs">
+
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">Wake on Lan</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <input type="checkbox" name="wake" class="enabler"
+                                               id="wake" ${('', 'checked="checked"')[bool(sickbeard.WAKE_ENABLED)]}/>
+                                        <label for="wake">Enable wake on lan before download</label>
+                                    </div>
+                                </div>
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">MAC Address to wake</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" id="wake_mac" name="wake_mac" value="${sickbeard.WAKE_MAC_ADDRESS}"
+                                                        class="form-control input-sm input350" autocapitalize="off"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">Wait for service</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <input type="checkbox" name="wait" class="enabler"
+                                               id="wait" ${('', 'checked="checked"')[bool(sickbeard.WAIT_ENABLED)]}/>
+                                        <label for="wait">Enable to wait for a service to be online</label>
+                                    </div>
+                                </div>
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">Service IP Address</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" id="wait_ip" name="wait_ip" value="${sickbeard.WAIT_IP_ADDRESS}"
+                                                        class="form-control input-sm input350" autocapitalize="off"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">Port</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="number" id="wait_port" name="wait_port" value="${sickbeard.WAIT_PORT}"
+                                                        class="form-control input-sm input75" autocapitalize="off"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field-pair row">
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                                        <label class="component-title">Wait timeout</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 component-desc">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="number" id="wait_timeout" name="wait_timeout" value="${sickbeard.WAIT_TIMEOUT}"
+                                                        class="form-control input-sm input75" autocapitalize="off"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="field-pair row">
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
